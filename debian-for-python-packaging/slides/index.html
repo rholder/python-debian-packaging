@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Python Deployment, Katamari Style</title>
+
+		<meta name="description" content="Python Deployment, Katamari Style">
+		<meta name="author" content="Ray Holder">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h2>Python Deployment, </br>Katamari Style</h2>
+					<p>
+						<a href="http://rholder.github.com">Ray Holder</a> / 
+						<a href="http://twitter.com/rholder_ftw">@rholder_ftw</a>
+					</p>
+				</section>
+
+				<section>
+					<h2>Who is this angry guy speaking?</h2>
+				</section>
+
+				<section>
+					<h2>Teh Problem</h2>
+					<br></br>
+					<h3 class="fragment">You have Python dependencies</h3>
+					<br></br>
+					<h3 class="fragment">You have binaries</h3>
+					<br></br>
+					<h3 class="fragment">You have other stuff</h3>
+				</section>
+
+				<section>
+					<h2>You need all the things!!!</h2>
+					<a href="#" class="image">
+						<img width="500" height="355" src="assets/images/allthethings.png">
+					</a>
+				</section>
+
+                <section>
+					<h2>Dependency hell</h2>
+					<br></br>
+					<h3 class="fragment">Partially solved by using Virtualenv</h3>
+					<br></br>
+					<h3 class="fragment">But we still need to address system-level dependencies</h3>
+                </section>
+
+                <section>
+					<h2>Solutions?</h2>
+					<br></br>
+					<h3 class="fragment"><a href="http://www.python.org/dev/peps/pep-0427/">PEP 427 - Wheel</a></h3>
+					<br></br>
+					<h3 class="fragment">The Katamari Method</h3>
+                </section>
+
+				<section>
+					<h2>Katamari Method<h2>	
+					<a href="#" class="image">
+						<img width="640" height="360" src="assets/images/katamari.jpg">
+					</a>
+					<h3>Roll everything into a ball</h3>
+                </section>
+
+                <section>
+                    <h2>Katamari Method</h2>
+                    <br></br>
+					<h3 class="fragment">Let Virtualenv manage your dependencies</h3>
+					<br></br>
+					<h3 class="fragment">Build your Virtualenv in a known location</h3>
+					<br></br>
+					<h3 class="fragment">Roll into Debian package with <a href="https://github.com/jordansissel/fpm">FPM</a></h3>
+                </section>
+
+				<section>
+                    <h2>FPM</h2>
+                    <h3>blah blah blah</h3>
+                    <h3>moar blah blah blah</h3>
+                    <h3>even moar blah blah blah</h3>
+                </section>
+
+				<section>
+					<h2>All Your Base</h2>
+					<h3>ADD ALL YOUR BASE PIC HERE</h3>
+					<h3>Create a base image for your project</h3>
+					<h3>Put your system level dependencies here</h3>
+                </section>
+
+				<section>
+					<h2>Work from your Base</h2>
+					<h3 class="fragment">Curate a requirements.txt for your project</h3>
+					<h3 class="fragment">Add your own system level dependencies as needed</h3>
+					<h3 class="fragment">Create a new image when system level dependencies change</h3>
+                </section>
+
+				<section>
+                    <h3>END</h3>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<!-- <script src="js/kh.js"></script> -->
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
+
